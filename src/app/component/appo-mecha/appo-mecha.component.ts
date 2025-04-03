@@ -34,7 +34,7 @@ export class AppoMechaComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.mechanicId){
-      setTimeout(() => this.initialize(), 500);
+      setTimeout(() => this.initialize(), 1000);
     }else {
       this.initialize()
     }

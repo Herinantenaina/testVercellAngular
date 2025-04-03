@@ -30,7 +30,7 @@ export class PaymentService {
   }
 
   getPaymentsByUser(userId: string): Observable<Payment[]> {
-    return this.http.get<Payment[]>(`${this.apiUrl}/${userId}`);
+    return this.http.get<Payment[]>(`${this.apiUrl}/byCustomer/${userId}`);
   }
 
 

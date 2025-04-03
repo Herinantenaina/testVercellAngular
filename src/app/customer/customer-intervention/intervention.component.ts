@@ -40,7 +40,7 @@ export class CompletedServicesComponent implements OnInit {
 
   filterServices(searchTerm: string): void {
     if (!searchTerm) {
-      this.filteredServices = [...this.completedServices];
+      this.filteredServices = [...this.appointments];
       return;
     }
 
@@ -100,6 +100,13 @@ export class CompletedServicesComponent implements OnInit {
             this.appointmentService.getAppointment(payment.appointmentId).subscribe(
               (appo) => {
                 this.appointments.push(appo);
+                console.log('ty lery', this.appointments)
+                this.appointments.forEach(
+                  (appo) => {
+                    appo.appoStatus = payment.paymentStatus
+                    this.loadServices(appo)
+                  }
+                )
               },
               (err) => {
                 console.log('Error fetching appointment', err);
@@ -126,6 +133,7 @@ export class CompletedServicesComponent implements OnInit {
           (car) => {
             appointment.carLicensePlate = car.licensePlate;
             appointment.carModel = car.model;
+            console.log('tyl eh ao ambany',this.appointments);
           },
           (error) => {
             console.log(

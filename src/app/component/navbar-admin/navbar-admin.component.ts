@@ -55,6 +55,7 @@ export class NavbarAdmin implements OnInit {
       this.authService.getUserData(token).subscribe({
         next: (response: any) => {
           this.user = response;
+          console.log(this.user)
         },
         error: (error: any) => {
           console.error('Error fetching user data', error);
