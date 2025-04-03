@@ -32,6 +32,7 @@ export class HistoryMechaComponent implements OnInit {
     }
   
     getAppoMecha(){
+      this.isLoading = true
       return this.appointmentService.getAppointments().pipe(
         // Step 1: Filter appointments first
         map((data: any[]) => {
@@ -86,7 +87,7 @@ export class HistoryMechaComponent implements OnInit {
       }
       
       this.getAppoMecha()
-  
+      this.isLoading = false
     }
   
   
