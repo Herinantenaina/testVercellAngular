@@ -7,11 +7,11 @@ import { ServicesService } from '../../services/create-services/services.service
 import { Notification } from '../../models/Notification';
 import { NotificationService } from '../../services/notif-services/notification.service';
 import { PaymentService } from '../../services/payment-services/payment.service';
-
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-appo-mecha',
-  imports: [CommonModule],
+  imports: [CommonModule, LoadingComponent],
   templateUrl: './appo-mecha.component.html',
   styleUrl: './appo-mecha.component.scss'
 })
@@ -31,10 +31,11 @@ export class AppoMechaComponent implements OnInit {
   mechanicId: string = '';
   user : any;
   customerId: any;
-
+  isLoading = true
   ngOnInit(): void {
     if (!this.mechanicId){
-      setTimeout(() => this.initialize(), 1000);
+      setTimeout(() => this.initialize(), 5000);
+      this.isLoading = false
     }else {
       this.initialize()
     }
