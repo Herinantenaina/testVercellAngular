@@ -43,16 +43,16 @@ export class HistoryMechaComponent implements OnInit {
         this.appointments = this.appointments.filter(appointment => appointment.mechanicId.toString() == this.mechanicId)
         this.appointments = this.appointments.filter(appointment => new Date(appointment.appoDate) < currentDate)
         console.log(this.appointments);
-        /*for(let appointment of this.appointments){
+        for(let appointment of this.appointments){
           this.userService.getById(appointment.customerId).subscribe(customer =>{
             appointment.customerName = customer.firstName + ' ' + customer.lastName
           });
           
-          this.serviceService.getById(appointment.serviceId).subscribe(service =>{
+          /* this.serviceService.getById(appointment.serviceId).subscribe(service =>{
             appointment.serviceName = service.serviceName 
   
-          })
-        } */
+          }) */
+        }
       })
       console.timeEnd('End')
     }
