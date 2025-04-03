@@ -1,0 +1,74 @@
+<table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Customer</th>
+        <th>Mechanic</th>
+        <th>Services</th>
+        <th>Appointment Date</th>
+        <th>Estimated Price</th>
+        <th>Final Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let appointment of appointments; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ appointment.customerName }}</td>
+        <td>{{ appointment.mechanicName }}</td>
+        <td>{{ appointment.serviceName }}</td>
+        <td>{{  formatDate(appointment.appoDate) }}</td>
+        <td>{{appointment.appoPriceEstimate}}</td>
+        <td> {{appointment.appoActualPrice || 'No price yet'}} </td>
+        <td>
+          <span (click)="openEditModal(appointment)" class="Edit">Edit</span>
+          <span (click)="openDeleteModal(appointment)" class="delete">Delete</span>
+        </td>
+      </tr> 
+          
+    </tbody>
+</table>
+
+<div *ngIf="isEditModalOpen" class="modal">
+  <div class="modal-content">
+    <h1>Edit Customer</h1> <br>
+    <form (ngSubmit)="onSubmit()">
+      <label for="customer">Customer:</label>
+      <input class="input" id="customer" [(ngModel)]="selectedAppointment.customerName" name="customer" readonly>
+
+      <label for="mechanic">Mechanic:</label>
+      <input class="input" id="mechanic" [(ngModel)]="selectedAppointment.mechanicName" name="mechanic" readonly>
+
+      <label for="service">Service requested:</label>
+      <input class="input" id="service" [(ngModel)]="selectedAppointment.service" name="service" readonly>
+
+      <label for="status">Status:</label>
+      <input class="input" id="status" [(ngModel)]="selectedAppointment.appoStatus" name="status" readonly>
+
+      <label for="date">Appointment Date:</label>
+      <input class="input" id="date" [value]="formatDate(selectedAppointment.appoDate)" name="date" readonly>
+
+      <label for="estimedPrice">Estimated Price:</label>
+      <input class="input" id="estimedPrice" [(ngModel)]="selectedAppointment.appoPriceEstimate" name="estimedPrice"  type="text" readonly>
+
+      <label for="realPrice">Final Price:</label>
+      <input class="unique" id="realPrice" [(ngModel)]="selectedAppointment.appoActualPrice" name="realPrice"  type="text">
+      
+      <div style="display: flex;margin-top:20px ; justify-content: space-evenly; width: 100%;">
+        <button type="submit" class="Edit">Edit</button>
+        <button (click)="closeEditModal()" class="delete">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="isDeleteModalOpen" class="modal">
+  <div class="delete-content">
+    <p>Do you want to delete this appointment?</p>
+    <div>
+      <span (click)="delete()" class="Edit">Yes</span>
+      <span (click)="closeDeleteModal()" class="delete">Cancel</span>
+    </div>
+  </div>
+</div>

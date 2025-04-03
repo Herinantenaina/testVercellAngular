@@ -1,0 +1,45 @@
+<!-- notification.component.html -->
+<div class="notifications-container">
+    <div class="notifications-header">
+      <h2>Notifications</h2>
+      <button class="mark-all-read" (click)="markAllAsRead()" *ngIf="unreadCount > 0">
+        Mark all as read
+      </button>
+    </div>
+  
+    <div class="unread-count" *ngIf="unreadCount > 0">
+      {{ unreadCount }} unread notification{{ unreadCount > 1 ? 's' : '' }}
+    </div>
+  
+    <div class="notification-list">
+      <div *ngFor="let notification of notifications" 
+           class="notification-item"
+           [class.unread]="!notification.isRead"
+           (click)="handleNotificationClick(notification)">
+  
+        <div class="notification-icon" [ngClass]="getIconClass(notification.type)">
+          <i [class]="getIcon(notification.type)"></i>
+        </div>
+  
+        <div class="notification-content">
+          <div class="notification-title">{{ notification.title }}</div>
+          <div class="notification-message">{{ notification.message }}</div>
+          <div class="notification-meta">
+            <span class="notification-time">{{ formatDate(notification.createdAt) }}</span>
+            <span class="notification-type">{{ notification.type }}</span>
+          </div>
+        </div>
+  
+        <div class="notification-actions">
+          <button class="delete-btn" (click)="deleteNotification(notification._id, $event)">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+  
+      <div class="empty-state" *ngIf="notifications.length === 0">
+        <i class="far fa-bell"></i>
+        <p>No notifications yet</p>
+      </div>
+    </div>
+  </div>

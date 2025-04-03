@@ -1,0 +1,61 @@
+<div id="customer-appointment">
+    <div id="appo-top">
+      <h4>My Cars</h4>
+      <button data-aos="fade-left" id="addCar" (click)="showAddCarForm()">+ Add a car</button>
+    </div>
+    <hr>
+    
+    <div class="cars-grid">
+      <div *ngFor="let car of cars; let i = index" class="car-card" data-aos="fade-up" [attr.data-aos-delay]="i*50">
+        <div class="card-header">
+          <span class="car-number">{{ i + 1 }}</span>
+          <h3 class="car-title">{{ car.brand }} {{ car.model }}</h3>
+        </div>
+        
+        <div class="card-body">
+          <div class="car-detail">
+            <i class="far fa-calendar-alt"></i>
+            <span>Year: {{ car.year }}</span>
+          </div>
+          
+          <div class="car-detail">
+            <i class="fas fa-car"></i>
+            <span>License: {{ car.licensePlate }}</span>
+          </div>
+          
+          <div class="car-detail">
+            <i class="fas fa-fingerprint"></i>
+            <span class="vin-number">{{ car.vin }}</span>
+          </div>
+        </div>
+        
+        <div class="card-actions">
+          <button class="action-btn edit-btn"
+            (click)="onEditCar(car)">
+            <i class="fas fa-pencil-alt"></i> Edit
+          </button>
+          <button class="action-btn delete-btn"(click)='deleteModal.openModal(car._id)'>
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
+      </div>
+      <div class="empty-state" *ngIf="cars.length === 0">
+        <i class="fas fa-car"></i>
+        <p>No car added yet</p>
+      </div>
+    </div>
+  </div>
+  
+  <app-new-car-form 
+    *ngIf="isEditCarForm"
+    [isEditMode]="true"
+    [carData]="selectedCar"
+    (submit)="onCarUpdated($event)"
+    (Cancel)="onFormCancel()"
+  ></app-new-car-form>
+  <app-new-car-form 
+    *ngIf="isAddCarForm"
+    [isEditMode]="false"
+    (Cancel)="onFormCancel()"
+  ></app-new-car-form>
+  <app-delete-modal #deleteModal (confirmDelete)="deleteCar($event)" desc="Car"></app-delete-modal>

@@ -1,0 +1,41 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input id="firstName" formControlName="firstName" type="text" placeholder="John" [(ngModel)]="newUser.firstName">
+        <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+            First Name is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" formControlName="lastName" type="text" placeholder="Doe" [(ngModel)]="newUser.lastName">
+        <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
+            Last Name is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="text" placeholder="example@gmail.com" [(ngModel)]="newUser.email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+          Email is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" placeholder="012 34 567 89" [(ngModel)]="newUser.phone">
+      <div *ngIf="userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched">
+          Phone is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input id="password" formControlName="password" type="text" [(ngModel)]="newUser.password">
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+          Password with 6 digits minimum is required  .</div>
+    </div>
+
+    <div clas="flex">
+      <button type="submit" [disabled]="userForm.invalid">Add</button>
+      <button type="reset" style="background-color: #E9B800; margin-left:10px">Reset</button>
+    </div>
+</form>

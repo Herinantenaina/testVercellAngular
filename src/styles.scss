@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+// @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$mainBlue : #1573B3 ;
+$darkGrey: #2E2E2E;
+$lightGrey: #EFEDED;
+
+.blur-background {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+$mainYellow: #E9B800;
+
+@mixin centerElements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+@mixin section {
+    height: 550px;
+    padding: 50px 100px;
+}
+
+@mixin yellowButton {
+    background-color: $mainYellow ;
+}
+
+@mixin section-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 100px;
+    font-size: 20px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}

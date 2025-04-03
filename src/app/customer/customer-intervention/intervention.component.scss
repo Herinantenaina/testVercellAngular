@@ -1,0 +1,228 @@
+/* Completed Services Table Styles */
+#customer-completed-services {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin: 20px 0;
+    width: 1150px;
+}
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.services-header h2 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-dropdown {
+    position: relative;
+    display: inline-block;
+    z-index:1000;
+}
+
+.filter-btn {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: #e9ecef;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f8f9fa;
+}
+
+.filter-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.services-table-container {
+    overflow-x: auto;
+}
+
+.services-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.services-table thead th {
+    background: #e3f1ff;
+    color: #495057;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.services-table th i {
+    margin-right: 8px;
+    color: #6c757d;
+}
+
+.services-table tbody tr {
+    transition: background 0.2s;
+}
+
+.services-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.services-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    vertical-align: middle;
+}
+
+.car-make-model {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.car-license {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 3px;
+}
+
+.service-name {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.service-details {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.status-badge.completed {
+    background: #e6f7ee;
+    color: #28a745;
+}
+
+.status-badge.paid {
+    background: #e6f7f7;
+    color: #17a2b8;
+}
+
+.status-badge.warranty {
+    background: #fff8e6;
+    color: #ffc107;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 3px;
+    transition: color 0.2s;
+}
+
+.action-btn:hover {
+    color: #4a6bdf;
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+}
+
+.no-results i {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f1f1f1;
+}
+
+.showing-entries {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pagination-controls button {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pagination-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background: #e9ecef;
+}

@@ -1,0 +1,130 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    backdrop-filter: blur(8px); /* Glass effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.modal-container {
+    background: rgb(255, 255, 255); /* Semi-transparent white */
+    border-radius: 12px;
+    padding: 24px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* HEADER: Elegant typography */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 12px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* CLOSE BUTTON: Neumorphism style */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+    color: #ff4b4b;
+}
+
+/* BODY: Readable text */
+.modal-body {
+    padding: 16px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+/* FOOTER: Button layout */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 16px;
+}
+
+/* BUTTONS: Modern styling */
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: none;
+}
+
+.btn-danger {
+    background: #ff4b4b;
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 75, 75, 0.3);
+}
+
+.btn-danger:hover {
+    background: #e03e3e;
+}
+
+.btn-secondary {
+    background: #ddd;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #bbb;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666; /* Neutral gray */
+    transition: all 0.2s ease-in-out;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}

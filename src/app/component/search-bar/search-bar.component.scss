@@ -1,0 +1,58 @@
+@use '../../../styles.scss' as *;
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  padding: 5px 16px;
+  border: 1px solid rgba($darkGrey, 0.2);
+  border-radius: 24px;
+  background: white;
+  width: 100px;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  margin: 15px 0px;
+
+  &:hover {
+    border-color: rgba($mainBlue, 0.4);
+    box-shadow: 0 2px 8px rgba($mainBlue, 0.08);
+  }
+
+  &:focus-within {
+    border-color: rgba($mainBlue, 0.6);
+    box-shadow: 0 3px 12px rgba($mainBlue, 0.12);
+    width: 200px;
+  }
+
+  i {
+    color: rgba($darkGrey, 0.6);
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    margin-left: 12px;
+    padding: 4px 0;
+    font-size: 14px;
+    color: $darkGrey;
+    background: transparent;
+
+    &::placeholder {
+      color: rgba($darkGrey, 0.4);
+    }
+  }
+
+  &:focus-within i {
+    color: $mainBlue;
+  }
+
+  @media (max-width: 768px) {
+    width: 240px;
+    
+    &:focus-within {
+      width: 260px;
+    }
+  }
+}

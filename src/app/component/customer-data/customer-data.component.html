@@ -1,0 +1,66 @@
+<table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Joined Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ phoneNumberInput(user.phone) }}</td>
+        <td>{{ user.createdAt | date:'yyyy-MM-dd'}}</td>
+        <td>
+          <span (click)="openEditModal(user)" class="Edit">Edit</span>
+          <span (click)="openDeleteModal(user)" class="delete">Delete</span>
+        </td>
+      </tr> 
+          
+    </tbody>
+</table>
+
+<div *ngIf="isEditModalOpen" class="modal">
+  <div class="modal-content">
+    <h1>Edit Customer</h1> <br>
+    <form (ngSubmit)="onSubmit()">
+      <label for="firstName">First Name:</label>
+      <input id="firstName" [(ngModel)]="selectedUser.firstName" name="firstName" required>
+
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" [(ngModel)]="selectedUser.lastName" name="lastName" required>
+
+      <label for="email">Email:</label>
+      <input id="email" [(ngModel)]="selectedUser.email" name="email" required>
+
+      <label for="serviceRequests">Service Requests:</label>
+      <input id="serviceRequests" [(ngModel)]="selectedUser.serviceRequests" name="serviceRequests">
+
+      <label for="startDate">Start Date:</label>
+      <input id="startDate" type="date" [(ngModel)]="selectedUser.startDate" name="startDate">
+      
+      <div style="display: flex;margin-top:20px ; justify-content: space-evenly; width: 100%;">
+        <button type="submit" class="Edit">Edit</button>
+        <button (click)="closeEditModal()" class="delete">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="isDeleteModalOpen" class="modal">
+  <div class="delete-content">
+    <p>Do you want to delete this user?</p>
+    <div>
+      <span (click)="delete()" class="Edit">Yes</span>
+      <span (click)="closeDeleteModal()" class='delete' >Cancel</span>
+    </div>
+  </div>
+</div>

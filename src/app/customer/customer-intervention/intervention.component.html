@@ -1,0 +1,100 @@
+<div id="customer-completed-services">
+    <div class="services-header">
+        <h2>Completed Services</h2>
+        <div class="header-actions">
+            <div class="filter-dropdown">
+                <button class="filter-btn">
+                    <i class="fas fa-filter"></i> Filter
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="filterByStatus('All')">All Services</a>
+                    <a (click)="filterByStatus('unpaid')">Unpaid</a>
+                    <a (click)="filterByStatus('paid')">Paid</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="services-table-container">
+        <table class="services-table">
+            <thead>
+                <tr>
+                    <th class="serial">#</th>
+                    <th class="car-info">
+                        <i class="fas fa-car"></i> Vehicle
+                    </th>
+                    <th class="service-desc">
+                        <i class="fas fa-tools"></i> Service
+                    </th>
+                    <th class="date">
+                        <i class="far fa-calendar-alt"></i> Date
+                    </th>
+                    <th class="price">
+                        <i class="fas fa-dollar-sign"></i> Amount
+                    </th>
+                    <th class="status">
+                        <i class="fas fa-check-circle"></i> Status
+                    </th>
+                    <th class="actions">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let filterService of filteredServices; let i = index">
+                    <td class="serial">{{i + 1}}</td>
+                    <td class="car-info">
+                        <div class="car-make-model">{{filterService.carLicensePlate}}</div>
+                        <div class="car-license">{{filterService.carModel}}</div>
+                    </td>
+                    <td class="service-desc">
+                        <div class="service-details" >
+                            {{filterService.serviceName}}
+                        </div>
+                    </td>
+                    <td class="date">
+                        {{filterService.appoDate | date:'mediumDate'}}
+                    </td>
+                    <td class="price">
+                        {{filterService.appoPriceEstimate| currency}}
+                    </td>
+                    <td class="status">
+                        <span class="status-badge" [ngClass]="filterService.appoStatus.toLowerCase()">
+                            {{filterService.appoStatus}}
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <button class="action-btn" (click)="viewDetails(filterService)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn" (click)="downloadInvoice(filterService)">
+                            <i class="fas fa-file-download"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredServices.length === 0">
+                    <td colspan="8" class="no-results">
+                        <i class="far fa-folder-open"></i>
+                        No completed services found
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="table-footer">
+        <div class="showing-entries">
+            Showing {{filteredServices.length}} of {{filteredServices.length}} entries
+        </div>
+        <div class="pagination-controls" *ngIf="filteredServices.length > 0">
+            <button [disabled]="currentPage === 1" (click)="previousPage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span>Page {{currentPage}} of {{totalPages}}</span>
+            <button [disabled]="currentPage === totalPages" (click)="nextPage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>

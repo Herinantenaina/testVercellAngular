@@ -1,0 +1,20 @@
+@import '../../../styles.scss';
+@import "tailwindcss";
+section {
+    @include section;   
+    display: flex;
+    justify-content: space-between
+
+}
+
+.section-title {
+    @include section-title;
+}
+
+a {
+    color: $mainYellow;
+}
+
+#section-2 {
+    height: 630px;
+}

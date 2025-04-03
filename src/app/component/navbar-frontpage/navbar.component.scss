@@ -1,0 +1,241 @@
+
+
+@import '../../../styles.scss';
+
+// Navbar base styles
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  z-index: 1000;
+  background-color: transparent;
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  backdrop-filter: blur(0px);
+  
+  &.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 10px 5%;
+    backdrop-filter: blur(8px);
+    
+    .navbar-brand a {
+      color: #272727;
+    }
+    
+    .nav-link {
+      color: #4d4d4d;
+      
+      &:hover {
+        color: #ffffff;
+        background-color: $mainBlue;
+      }
+      
+      &::before {
+        background-color: $mainBlue;
+      }
+    }
+  }
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+    padding: 15px 20px;
+    
+    &.scrolled {
+      padding: 10px 20px;
+    }
+  }
+}
+
+// Brand styling
+.navbar-brand {
+  a {
+    color: rgb(27, 27, 27);
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: $mainBlue;
+      transition: width 0.3s ease;
+    }
+    
+    &:hover {
+      color: $mainBlue;
+      
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Navigation items
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+  
+  @media(max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+    gap: 5px;
+  }
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: #272727;
+  text-decoration: none;
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($mainBlue, 0.1);
+    border-radius: 50px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+  }
+  
+  &:hover {
+    color: darken($mainBlue, 15%);
+    border-radius: 50px;
+    
+    &::before {
+      transform: scaleX(1);
+      transform-origin: left;
+      border-radius: 50px;
+    }
+  }
+  
+  @media(max-width: 768px) {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+// Login button
+#loginBtn {
+  @include yellowButton;
+  @include btn;
+  color: white;
+  border-radius: 50px;
+  padding: 8px 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba($mainBlue, 0.3);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.3) 50%, transparent 75%);
+    background-size: 400% 400%;
+    transition: all 0.6s ease;
+    opacity: 0;
+  }
+  
+  &:hover {
+    background-color: darken($mainBlue, 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($mainBlue, 0.4);
+    
+    &::after {
+      opacity: 1;
+      animation: shine 1.5s infinite;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  @media(max-width: 768px) {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Mobile menu toggle (optional - you can add this if you want a hamburger menu)
+.mobile-menu-toggle {
+  display: none;
+  cursor: pointer;
+  
+  @media(max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #272727;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+    
+    &.active {
+      .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="performance-circle">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#e0e0e0" stroke-width="10"/>
+      
+    <circle *ngIf="percentage >= 0" cx="60" cy="60" r="50" fill="none" 
+    [attr.stroke]="color" stroke-width="10" stroke-linecap="round"
+    [attr.stroke-dasharray]="circumference"
+    [attr.stroke-dashoffset]="dashOffset"/>
+
+
+    <circle *ngIf="percentage < 0" cx="60" cy="60" r="50" fill="none" 
+            [attr.stroke]="warningColor" stroke-width="10" stroke-linecap="round"
+            [attr.stroke-dasharray]="circumference"
+            [attr.stroke-dashoffset]="dashOffset"/>
+      
+      <text x="60" y="65" text-anchor="middle" font-size="20" fill="#333">{{percentage}}%</text>
+    </svg>
+    <div >
+        <p style="font-size: 40px; font-weight: bold; color:#1573B3">{{count}}</p>
+        <p>appointments <br>this month</p>
+    </div>
+  </div>
+
+<p>Performance last month</p>
+

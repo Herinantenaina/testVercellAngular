@@ -1,0 +1,24 @@
+<table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Customer</th>
+        <th>Services</th>
+        <th>Appointment Date</th>
+        <th>Estimated Price</th>
+        <th>Final Price</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let appointment of appointments; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ appointment.customerName }}</td>
+            <td>{{ appointment.serviceName }}</td>
+            <td>{{  formatDate(appointment.appoDate) }}</td>
+            <td>{{appointment.appoPriceEstimate}}</td>
+            <td> {{appointment.appoActualPrice || 'No price yet'}} </td>
+      </tr> 
+          
+    </tbody>
+</table>

@@ -1,0 +1,98 @@
+<div id="displayForm" data-aos="fade-up">
+    <div class="title">
+        <h2>
+            Garazy
+        </h2>
+        <button type="button" (click)="onCrossClick()">X</button>
+    </div>
+    <div id="inForm">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <h1>Create your Account</h1>
+
+            <button type="button" id="googleLoginBtn">
+                <img src="customer/signup/google.png" alt="Google Icon">
+                SignUp with Google
+            </button>
+
+            <p>Already have an account? <a href="/login">Login</a></p>
+
+            <div class="or">
+                <hr style="float: left;">
+                <span>or</span>
+                <hr style="float: right;">
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <div class="input-group">
+                    <input type="text" id="FirstName" formControlName="firstName" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/fullName.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <div class="input-group">
+                    <input type="text" id="LastName" formControlName="lastName" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/fullName.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input type="text" formControlName="email" id="email" name="customerEmail" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/email.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="number">Phone Number</label>
+                <div class="input-group">
+                    <input type="number" formControlName="phone" id="number" name="customerNumber" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/phoneNumber.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <div class="input-group">
+                    <input type="password" formControlName="password" id="pwd" name="customerPwd" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/pwd.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+
+            <button type="submit" id="signUpBtn">Sign Up</button>
+
+        </form>
+        <div class="right">
+        </div>
+    </div>
+</div>

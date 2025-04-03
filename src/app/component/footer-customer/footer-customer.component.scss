@@ -1,0 +1,45 @@
+@import '../../../styles.scss' ;
+
+.section-title {
+    @include section-title
+}
+
+section {
+    @include section;
+    display: flex;
+    justify-content: space-between;
+    height: 50vh;
+    font-size: 20px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+#numero {
+    line-height: 30px;
+}
+
+.cont {
+    display: flex;
+    width: 200px;
+    p {
+        margin-left: 20px;
+    }
+}
+
+#phone {
+    width: 30px;
+    height: 30px ;
+}
+

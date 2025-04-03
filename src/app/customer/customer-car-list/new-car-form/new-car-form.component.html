@@ -1,0 +1,52 @@
+
+<div id="newAppointment" data-aos="fade-down" data-aos-duration="500">
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+        <div class="form-header">
+            <h4>{{ isEditMode ? 'Edit Car' : 'Add Car'}}</h4>
+            <button class="close-btn" (click)="onCancel()">X</button>
+        </div>
+        <div class="form-group">
+            <label for="carBrand">Brand</label>
+            <div class="input-group">
+                <input type="text" id="carBrand" formControlName="brand" required>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="carModel">Model</label>
+            <div class="input-group">
+                <input type="text" id="carModel" formControlName="model" required>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="carYear">Year</label>
+            <div class="input-group">
+                <input type="text" id="carYear" formControlName="year" required>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="carLicensePlate">License Plate</label>
+            <div class="input-group">
+                <input type="text" id="carLicensePlate" formControlName="licensePlate" required>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="carVin">Vin</label>
+            <div class="input-group">
+                <input type="text" id="carVin" formControlName="vin" required>
+            </div>
+            <div class="line"></div>
+        </div>
+
+    
+        <button id="addAppo" type="submit" [disabled]="carForm.invalid">Confirm</button >
+    </form>
+</div>

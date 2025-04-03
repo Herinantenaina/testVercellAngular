@@ -1,0 +1,144 @@
+@use '../../../styles.scss' as *;
+
+.service-card {
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 220px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    border: none;
+    width: 280px;
+    
+    &::after {
+      opacity: 1;
+    }
+    
+    img {
+      transform: scale(1.05);
+    }
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, $mainBlue 0%, lighten($mainBlue, 20%) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.service-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  transition: transform 0.4s ease;
+}
+
+.service-card h2 {
+  font-size: 1.4rem;
+  color: #2d3748;
+  margin: 12px 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.service-card p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $mainBlue;
+    margin-right: 8px;
+  }
+}
+
+.service-details {
+  margin: 16px 0;
+  flex-grow: 1;
+}
+
+.duration-price {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+  
+  p {
+    font-weight: 600;
+    color: $mainBlue;
+    
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba($mainBlue, 0.1);
+  color: $mainBlue;
+  border-radius: 50px;
+  font-size: 14px;
+  margin: 12px 0;
+  font-weight: 500;
+}
+
+.service-card a {
+  @include btn;
+  background: linear-gradient(135deg, $mainBlue 0%, darken($mainBlue, 10%) 100%);
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.6s ease;
+    z-index: -1;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($mainBlue, 0.3);
+    
+    &::after {
+      left: 100%;
+    }
+  }
+}

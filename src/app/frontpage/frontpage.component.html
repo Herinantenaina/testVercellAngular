@@ -1,0 +1,12 @@
+<div [class.blur-background]="showSignUpForm">
+    <app-header (loginClicked)="toggleSignUpForm()"></app-header>
+    <app-section1 (loginClicked)="toggleSignUpForm()"></app-section1>
+    <app-section2></app-section2>
+    <app-section3></app-section3>
+    <app-footer-customer></app-footer-customer>
+</div>
+
+<div *ngIf="showSignUpForm">
+    <!-- <app-login (crossClicked)="toggleSignUpForm()"></app-login> -->
+     <app-login (crossClicked) = "toggleSignUpForm()"></app-login>
+</div>

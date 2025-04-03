@@ -1,0 +1,27 @@
+<section class="container">
+    <div class="top">
+        <div class="dash">
+            <img src="admin-img/dashboard/top-icon.png" alt="" class="icon-top">
+            <p>Customer</p>
+        </div>
+
+        <div class="admin">
+            <img src="admin/dashboard/custom_blue.png" alt="" class="adminIcon">
+            <p style="padding-left: 5px;">{{user?.firstName}}</p>
+        </div>
+    </div>
+
+    <section class="sec-0">
+        <div class="flex">
+            <a routerLink="/admin/customer/customer-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <span><img src="admin-img/customer/customer.png" alt="">Customers</span>
+            </a>
+            <a routerLink="/admin/customer/add-customer" routerLinkActive="active">
+                <span><img src="admin-img/customer/add.png" alt="">Add</span>            
+            </a>
+        </div>
+        <div>
+            <router-outlet/>
+        </div>
+    </section>
+</section>

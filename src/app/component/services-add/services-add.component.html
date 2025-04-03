@@ -1,0 +1,48 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" type="text" placeholder="Oil change" [(ngModel)]="newService.serviceName" required>
+        <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+            First Name is required.</div>
+    </div>
+  
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input id="category" formControlName="category" type="text" placeholder="Routine Maintenance/Repair/Diagnostic" [(ngModel)]="newService.serviceType" required>
+        <div *ngIf="userForm.get('category')?.invalid && userForm.get('category')?.touched" >
+            Last Name is required.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="description">description</label>
+      <textarea id="description" formControlName="description" [(ngModel)]="newService.serviceDescription" required></textarea>
+      <div *ngIf="userForm.get('description')?.invalid && userForm.get('description')?.touched" style="color: red; font-size: 10px">
+          A description is required.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="price">Estimated Price(Ar):</label>
+      <input id="price" formControlName="price" type="text" placeholder="700000" [(ngModel)]="newService.serviceEstimatedPrice" required>
+      <div *ngIf="userForm.get('price')?.invalid && userForm.get('price')?.touched">
+          Phone is required.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Estimated Duration:</label>
+      <div>
+        <input type="number" formControlName="durationHours" min="0" placeholder="Hours" style="width: 80px;" required>
+        <span>h  </span>
+        <input type="number" formControlName="durationMinutes" min="0" max="59" placeholder="Minutes" style="width: 80px;" required>
+        <span>m</span>
+      </div>
+      <div *ngIf="userForm.get('durationHours')?.invalid || userForm.get('durationMinutes')?.invalid && (userForm.get('durationHours')?.touched || userForm.get('durationMinutes')?.touched)">
+        Please enter a valid duration.
+      </div>
+    </div>
+  
+    <div clas="flex">
+      <button type="submit" [disabled]="userForm.invalid" class="edit">Add</button>
+      <button type="reset" style="background-color: #E9B800; margin-left:10px" >Reset</button>
+    </div>
+  </form>

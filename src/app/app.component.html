@@ -1,17 +1,1 @@
-<div>
-  <p>Current: {{current_date}}</p>
-</div>
-<div class="calendar">
-  <div class="week" *ngFor="let week of weeks">
-    <div class="day" *ngFor="let day of week">
-      <div *ngIf="day; else emptyDay">
-        <div class="date">{{ day.getDate() }}</div>
-        <div class="events">{{ getEventCount(day) }} events</div>
-      </div>
-      <ng-template #emptyDay>
-        <div class="empty-day"></div>
-      </ng-template>
-    </div>
-  </div>
-</div>
-<app-cal></app-cal>
+<router-outlet />

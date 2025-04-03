@@ -1,0 +1,161 @@
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  background: white;
+  width: 800px;
+  height: 475px;
+  max-width: 1000px; // Constrain width for better readability
+}
+
+/* Week headers (day names) */
+.week-header {
+  display: flex;
+  background-color: #1573B3; // Primary color for headers
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+/* Individual day headers (Mon, Tue, etc.) */
+.day-header {
+  flex: 1;
+  padding: 12px 5px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Week rows */
+.week {
+  display: flex;
+  min-height: 80px; // Taller cells for better event visibility
+}
+
+/* Day cells */
+.day {
+  position: relative;
+  flex: 1;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px;
+  min-height: 80px;
+  transition: all 0.2s ease;
+  background-color: white;
+
+  &:hover {
+    background-color: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+/* Empty days (from previous/next month) */
+.empty-day {
+  background-color: #f9f9f9;
+  color: #aaa;
+}
+
+/* Date number */
+.date {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+
+  .empty-day & {
+    color: #ccc;
+  }
+}
+
+/* Event indicators */
+.events {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #1573B3;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(21, 115, 179, 0.3);
+  }
+}
+
+/* Today's date */
+.today {
+  background-color: rgba(233, 184, 0, 0.15); // Subtle yellow
+  
+  .date {
+    color: #1573B3;
+    font-weight: bold;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 6px;
+    height: 6px;
+    background-color: #E9B800;
+    border-radius: 50%;
+  }
+}
+
+/* No events state */
+.no-events {
+  display: none; // Kept your original hiding behavior
+}
+
+/* Weekend days styling */
+.weekend {
+  background-color: #fafafa;
+  
+  .date {
+    color: #1573B3;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .day-header {
+    padding: 8px 2px;
+    font-size: 0.7em;
+  }
+  
+  .day {
+    min-height: 60px;
+    padding: 4px;
+  }
+  
+  .date {
+    font-size: 12px;
+  }
+  
+  .events {
+    width: 15px;
+    height: 15px;
+    font-size: 8px;
+  }
+}

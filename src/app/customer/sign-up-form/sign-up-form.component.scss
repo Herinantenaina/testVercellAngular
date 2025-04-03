@@ -1,0 +1,141 @@
+@use '../../../styles.scss' as *;
+@import "tailwindcss";
+#displayForm {
+    height: 822px;
+    width: 1200px;
+    position: absolute;
+    top:0%;
+    left: 10%;
+    // transform: translate(-50%, -50%);
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-image: url('../../../../public/customer/signup/bg.png');
+    background-color: white;
+    border-radius: 5px;
+    transform: scale(0.8);
+}
+
+form {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;   
+    background-color: white; 
+    border-radius: 5px
+}
+
+#googleLoginBtn {
+    @include btn;
+    width: 70%;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: $lightGrey;
+    background-color: white;
+    box-shadow: none;
+    border-style: solid;
+    
+    img {
+        height: 20px;
+        padding-right: 20px;
+    }
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    button {
+        font-size: 30px;
+        border: none;
+        background: none;
+        transition: 0.3s ease;
+
+        &:hover {
+            cursor: pointer;
+            color: tomato;
+            transition: 0.3s ease;
+        }
+    }
+}
+
+.right {
+    background-image: url('../../../../public//customer/signup/rigthCard.png');
+    width: 45%; 
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+#inForm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.or {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    hr {
+        height: 1px;
+        background-color: $lightGrey; 
+        width: 150px;
+        border: none;
+    }
+}
+
+form {
+    padding: 50px;
+    height: 650px;
+}
+
+.form-group {
+    width: 100%;
+}
+input {
+    border:none;
+    width: 500px;
+    outline: none;
+}
+
+.line {
+    height: 1px;
+    background-color: $lightGrey;
+    width: 100%;
+}
+
+.input-group {
+    padding: 5px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    color: #8c8c8c;
+}
+
+.form-check {
+    display: flex;
+    justify-content:flex-start;
+    padding-bottom: 20px;
+    input {
+        height: 15px;
+        width: 20px;
+    }
+}
+
+#signUpBtn {
+    @include btn;
+    border: none;
+    background-color: $mainBlue;
+    color: white;
+    width: 100%;
+    font-size: larger;
+}
+
+

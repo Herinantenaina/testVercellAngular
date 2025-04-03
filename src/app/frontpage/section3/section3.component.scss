@@ -1,0 +1,17 @@
+@import '../../../styles.scss';
+@import "tailwindcss";
+#section-3 {
+    @include section;
+    background: linear-gradient(to bottom, rgba(233, 233, 233, 0.945), rgba(224, 224, 224, 0.815)), url('../../../../public/frontpage/section3BG.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+
+.section-title {
+    @include section-title;
+}
+
+a {
+    color: $mainYellow;
+}

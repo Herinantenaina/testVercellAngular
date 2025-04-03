@@ -1,0 +1,59 @@
+<div id="displayForm" data-aos="fade-up">
+    <div class="title">
+        <h2>
+            Garazy
+        </h2>
+        <button type="button" (click)="onCrossClick()">X</button>
+    </div>
+    <div id="inForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h1>LogIn into your Account</h1>
+
+            <button type="button" id="googleLoginBtn">
+                <img src="customer/signup/google.png" alt="Google Icon">
+                Login with Google
+            </button>
+
+            <p>Still haven't an account ? <a (click)="onSignup()">SignUp</a></p>
+
+            <div class="or">
+                <hr style="float: left;">
+                <span>or</span>
+                <hr style="float: right;">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input type="text" id="email" formControlName="email" name="email" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/email.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <p *ngIf="errorType ==='email'" class="error-message">{{ errorMessage }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <div class="input-group">
+                    <input type="password" id="pwd" formControlName="password" name="customerPwd" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <img src="customer/signup/pwd.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <p *ngIf="errorType ==='password'" class="error-message">{{ errorMessage }}</p>
+            </div>
+
+            <button type="submit" id="logInBtn">Login</button>
+
+        </form>
+        <div class="right">
+        </div>
+    </div>
+</div>

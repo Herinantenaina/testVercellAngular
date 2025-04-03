@@ -1,0 +1,53 @@
+<div id="newAppointment" data-aos="fade-down" data-aos-duration="500">
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+        <div class="form-header">
+            <h4>{{ isEditMode ? 'Edit Appointment' : 'New Appointment'}}</h4>
+            <button class="close-btn" (click)="onCancel()">X</button>
+        </div>
+        <div class="form-group">
+            <label for="appo-desc">Service</label>
+            <div class="input-group">
+                <select id="appo-desc" formControlName="serviceId" class="form-control" >
+                    <option *ngFor='let ser of services' [value]="ser._id">{{ser.serviceName}}</option>
+                    
+                </select>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="appo-car">Car</label>
+            <div class="input-group">
+                <select id="appo-car" formControlName="carId" class="form-control">
+                    <option *ngFor="let car of cars" [value]="car._id">{{car.licensePlate}}</option>
+                </select>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="appo-date">Date</label>
+            <div class="input-group">
+                <input 
+                    type="datetime-local" 
+                    id="appo-date" 
+                    formControlName="appoDate" 
+                    class="form-control"
+                    [min]="minDateTime"
+                
+                    (change)='validateDateTime($event)'
+                > 
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="appo-note">Note</label>
+            <div class="input-group">
+                <textarea id="appo-note" formControlName="appoNotes" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <button id="addAppo" type="submit" [disabled]="appointmentForm.invalid">Confirm</button>
+    </form>
+</div>

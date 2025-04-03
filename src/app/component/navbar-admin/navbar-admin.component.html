@@ -1,0 +1,42 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div id="customer-navbar" (click)="toggleMenu()">
+    <div class="top">
+        <h2>Garazy</h2>
+
+        <div class="profile" *ngIf="user">
+            <i class="fas fa-user-circle"></i>
+            <p>{{user.firstName}} <br>{{user.lastName}}</p>
+        </div>
+        
+        <ul class="nav-links">
+            <a routerLink="/admin/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page"><li><i class="fa fa-home"></i>Dashboard</li></a>
+            <a routerLink="/admin/customer" routerLinkActive="active" ariaCurrentWhenActive="page"><li><i class="fas fa-users"></i>Customers</li></a>
+            <a routerLink="/admin/mechanic" routerLinkActive="active" ariaCurrentWhenActive="page"><li><i class="fa fa-cogs   "></i>Mechanics</li></a>
+            <a routerLink="/admin/services" routerLinkActive="active" ariaCurrentWhenActive="page"><li><i class="fa fa-tag"></i>Services</li></a>
+            <a routerLink="/admin/appointments" routerLinkActive="acrive" ariaCurrentWhenActive="page"><li><i class="fa fa-check-square"></i>Appointment</li></a>     
+            <hr>
+        </ul>
+
+        <div class="dropdown">
+            <button class="dropbtn" (click)="toggleDropdown()">My Profile <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-content" *ngIf="isDropdownVisible">
+                <a (click)="onLogout()"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                <a href="customer/deleteAccount"><i class="fas fa-trash-alt"></i> Delete Account</a>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- <div class="bottom">
+        <a class="support-button" href="customer/support">
+            <i class="fas fa-question-circle"></i>
+            Support
+        </a>
+        <a class="settings-button" href="customer/setting">
+            <i class="fas fa-cog"></i>
+            Settings
+        </a>
+    </div> -->
+</div>

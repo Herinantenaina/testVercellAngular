@@ -1,0 +1,213 @@
+
+@use '../../../styles.scss' as *;
+
+#newAppointment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+form {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, $mainBlue 0%, lighten($mainBlue, 20%) 100%);
+  }
+
+  & > * {
+    margin: 8px 0;
+  }
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  h2 {
+    color: $mainBlue;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #8c8c8c;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    
+    &:hover {
+      color: $mainBlue;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.form-group {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+  
+  label {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    color: #8c8c8c;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: white;
+    padding: 0 5px;
+  }
+  
+  &.focused label, &:not(.empty) label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: $mainBlue;
+  }
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid $lightGrey;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: white;
+  
+  &:focus {
+    outline: none;
+    border-color: $mainBlue;
+    box-shadow: 0 0 0 3px rgba($mainBlue, 0.2);
+  }
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  
+  .form-group {
+    flex: 1;
+  }
+}
+
+textarea {
+  height: 120px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.time-inputs {
+  display: flex;
+  gap: 15px;
+  
+  input {
+    text-align: center;
+  }
+}
+
+#addAppo {
+  @include btn;
+  width: 100%;
+  border: none;
+  background: linear-gradient(90deg, $mainBlue 0%, lighten($mainBlue, 10%) 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: all 0.6s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba($mainBlue, 0.4);
+    
+    &::after {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    gap: 0;
+  }
+}

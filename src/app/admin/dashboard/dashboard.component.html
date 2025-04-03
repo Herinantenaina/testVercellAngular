@@ -1,0 +1,70 @@
+<section class="container">
+
+    <div class="top">
+        <div class="dash">
+            <img src="admin-img/dashboard/top-icon.png" alt="" class="icon-top">
+            <p>Dashboard</p>
+        </div>
+
+        <div class="admin">
+            <img src="admin-img/dashboard/custom_blue.png" alt="" class="adminIcon">
+            <p style="padding-left: 5px;">{{user?.firstName}}</p>
+        </div>
+        
+    </div>
+    
+    <section class="sec-1">
+        <div class=" square">
+            <a routerLink="/admin/customer" routerLinkActive="active" ariaCurrentActive="page" class="client">
+                <img src="admin-img/dashboard/client.png" alt="">
+                <p style="font-size: 18px;">{{customers.length}} </p> 
+                <p style="font-weight:300;">clients</p>
+            </a>
+        </div>
+
+        <div class=" square">
+            <a routerLink="/admin/mechanic" routerLinkActive="active" ariaCurrentActive="page" class="mechanic">
+                <img src="admin-img/dashboard/mechanic.png" alt="">
+                <p style="font-size: 18px;">{{mechanics.length}} </p>
+                <p style="font-weight:300;">mechanics</p>
+            </a>
+        </div>
+
+        <div class=" square">
+            <a routerLink="/admin/services" routerLinkActive="active" ariaCurrentActive="page" class="service">
+                <img src="admin-img/dashboard/cart.png" alt="">
+                <p style="font-size: 18px;">{{services.length}} </p>  
+                <p style="font-weight:300;">services
+                </p>
+            </a>
+        </div>
+
+        <div class=" square">
+            <a routerLink="/admin/appointments" routerLinkActive="active" ariaCurrentActive="page" class="appointment">
+                <img src="admin-img/dashboard/appointment .png" alt="" style="height:20px">
+                <p style="font-size: 18px;">{{appoitments.length}} </p> 
+                <p style="font-weight:300;">appointments</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="sec-2">
+        <section class="calendar">
+            <p style="font-size: 20px; padding:4px 0 10px 15px; ">Calendar Events</p>
+            <p class="current-date">{{currentDate}}</p>
+            <app-calendar></app-calendar>
+        </section>
+
+        <section class="info">
+            <div class="newcomer">
+                <p style="margin-bottom: 5px; font-size: 20px; padding:4px 0 10px 15px;">Latest users</p>
+            <app-last-user></app-last-user>
+            </div>  
+
+            <div class="employee">
+                <p style="margin-bottom: 5px; font-size: 20px; padding:4px 0 10px 15px;">Service Performance</p>
+                <app-top-employee></app-top-employee>
+            </div>
+        </section>
+    </section>
+</section>

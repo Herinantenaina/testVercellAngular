@@ -1,0 +1,23 @@
+<div 
+    class="service-card box" 
+    data-aos="fade-up" 
+    data-aos-duration="500" 
+    data-aos-delay="0"
+    data-aos-easing="ease-in-out" 
+    data-aos-offset="200" 
+    data-aos-anchor-placement="top-bottom"
+>
+    <img [src]='imageUrl' alt="Service image">
+    <h2>{{ title }}</h2>
+    
+    <div class="service-details">
+        <div class="duration-price">
+            <p>{{ duration }} min</p>
+            <p>{{ price }} $</p>
+        </div>
+        
+        <span class="category">{{ category }}</span>
+    </div>
+    
+    <a href="createAccountUrl">Book This Service</a> 
+</div>

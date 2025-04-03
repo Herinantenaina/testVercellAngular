@@ -1,0 +1,24 @@
+<section class="container">
+    <div class="top">
+        <div class="dash">
+            <img src="admin-img/dashboard/top-icon.png" alt="" class="icon-top">
+            <p>Appointments</p>
+        </div>
+
+        <div class="admin">
+            <img src="admin-img/dashboard/custom_blue.png" alt="" class="adminIcon">
+            <p style="padding-left: 5px;">{{user?.firstName}}</p>
+        </div>
+    </div>
+
+    <section class="sec-0">
+        <div class="flex">
+            <a routerLink="/admin/appointments/appointments-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <span><img src="admin-img/appointment/apptmnt.png" alt="">Appointments</span>
+            </a>
+        </div>
+        <div>
+            <router-outlet/>
+        </div>
+    </section>
+</section>

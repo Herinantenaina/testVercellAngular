@@ -1,0 +1,25 @@
+  <div class="calendar">
+    <!--Header -->
+    <div class="week-header">
+      <div class="day-header" *ngFor="let day of daysOfWeek">
+        {{ day }}
+      </div>
+    </div>
+  
+    <!--Calendar-->
+    <div class="week" *ngFor="let week of weeks">
+      <div class="day" *ngFor="let day of week">
+        <div *ngIf="day; else emptyDay">
+          <div class="date" >{{ day.getDate() }}</div>
+            <div class="events" title="Appointment" [ngClass]="{ 'no-events': getEventCount(day) == 0 }">
+              <a routerLink="/admin/appointments" routerLinkActive="active" ariaCurrentWhenActive="page" class="hover">
+              {{ getEventCount(day) }} 
+              </a>
+            </div>
+        </div>
+        <ng-template #emptyDay>
+          <div class="empty-day"></div>
+        </ng-template>
+      </div>
+    </div>
+  </div>

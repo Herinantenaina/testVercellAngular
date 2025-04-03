@@ -1,0 +1,17 @@
+<ul class="user-list">
+  <li *ngFor="let user of latestUsers | slice:0:5">
+    <div class="user-card">
+      <!-- Optional status indicator -->
+      <div class="user-status" [class.inactive]="!user.isActive"></div>
+      
+      <div class="user-info">
+        <span class="user-name">{{ user.firstName + ' ' + user.lastName }}</span>
+        <span class="user-email">{{ user.email }}</span>
+        <span class="user-join-date">
+          {{ user.createdAt | date:'yyyy-MM-dd'}}
+        </span>
+      </div>
+     
+    </div>
+  </li>
+</ul>
