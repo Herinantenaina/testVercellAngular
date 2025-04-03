@@ -54,7 +54,7 @@ export class HistoryMechaComponent implements OnInit {
           })
         }
       })
-      console.time('End')
+      console.timeEnd('End')
     }
   
     initialize(): void{
