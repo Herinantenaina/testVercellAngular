@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CalComponent } from './component/cal/cal.component';
 
 @Component({
   selector: 'app-root',
-  imports : [CommonModule],
+  imports : [CommonModule,CalComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
