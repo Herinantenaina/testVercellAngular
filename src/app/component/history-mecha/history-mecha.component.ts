@@ -32,39 +32,23 @@ export class HistoryMechaComponent implements OnInit {
     }
   
     getAppoMecha(){
-      this.isLoading = true
-      return this.appointmentService.getAppointments().pipe(
-        // Step 1: Filter appointments first
-        map((data: any[]) => {
-          return data.filter(app => 
-            app.mechanicId.toString() === this.mechanicId
-          );
-        }),
-        // Step 2: Process filtered appointments
-        switchMap(filteredApps => {
-          if (filteredApps.length === 0) {
-            return of([]); // Early return if no appointments
-          }
-    
-          // Step 3: Create parallel requests for each appointment
-          const detailRequests = filteredApps.map(appointment => {
-            return forkJoin([
-              this.userService.getById(appointment.customerId),
-              this.serviceService.getById(appointment.serviceId)
-            ]).pipe(
-              // Step 4: Transform the combined results
-              map(([customer, service]) => ({
-                ...appointment,
-                customerName: `${customer.firstName} ${customer.lastName}`,
-                serviceName: service.serviceName
-              }))
-            );
+      this.appointmentService.getAppointments().subscribe(data =>{
+        const currentDate = new Date();
+        this.appointments = data;
+        this.appointments = this.appointments.filter(appointment => appointment.mechanicId.toString() == this.mechanicId)
+        this.appointments = this.appointments.filter(appointment => new Date(appointment.appoDate) >= currentDate)
+        console.log(this.appointments);
+        for(let appointment of this.appointments){
+          this.userService.getById(appointment.customerId).subscribe(customer =>{
+            appointment.customerName = customer.firstName + ' ' + customer.lastName
           });
-    
-          // Step 5: Execute all requests in parallel
-          return forkJoin(detailRequests);
-        })
-      );
+          
+          this.serviceService.getById(appointment.serviceId).subscribe(service =>{
+            appointment.serviceName = service.serviceName 
+  
+          })
+        }
+      })
     }
   
     initialize(): void{
@@ -73,7 +57,6 @@ export class HistoryMechaComponent implements OnInit {
         this.authService.getUserData(token).subscribe({
           next: (response: any) => {
             this.mechanicId= response._id;
-            this.isLoading = false;
           },
           error: (error: any) => {
             console.error('Error fetching user data', error);
