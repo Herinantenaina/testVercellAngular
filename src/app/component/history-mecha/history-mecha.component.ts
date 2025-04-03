@@ -28,6 +28,7 @@ export class HistoryMechaComponent implements OnInit {
     isLoading = true;
 
     ngOnInit(): void {
+      this.isLoading = true;
       this.initialize()
     }
   
