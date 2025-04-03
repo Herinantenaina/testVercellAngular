@@ -75,7 +75,7 @@ export class HistoryMechaComponent implements OnInit {
         console.warn('no token found in localstorage');
       }
       
-      this.getAppoMecha()
+      //this.getAppoMecha()
       this.isLoading = false
     }
   
