@@ -35,12 +35,12 @@ export class HistoryMechaComponent implements OnInit {
       }
     }
   
-    /* getAppoMecha(){
+    getAppoMecha(){
       console.time('Start')
       this.appointmentService.getAppointments().subscribe(data =>{
         const currentDate = new Date();
         this.appointments = data;
-        this.appointments = this.appointments.filter(appointment => appointment.mechanicId.toString() == this.mechanicId)
+       /*  this.appointments = this.appointments.filter(appointment => appointment.mechanicId.toString() == this.mechanicId)
         this.appointments = this.appointments.filter(appointment => new Date(appointment.appoDate) >= currentDate)
         console.log(this.appointments);
         for(let appointment of this.appointments){
@@ -52,10 +52,10 @@ export class HistoryMechaComponent implements OnInit {
             appointment.serviceName = service.serviceName 
   
           })
-        }
+        } */
       })
       console.timeEnd('End')
-    } */
+    }
   
     initialize(): void{
       const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
