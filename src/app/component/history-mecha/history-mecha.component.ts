@@ -5,6 +5,8 @@ import { AppointmentService } from '../../services/customer-services/customer-ap
 import { MechanicService } from '../../services/add-mechanic/mechanic.service';
 import { ServicesService } from '../../services/create-services/services.service';
 import { LoadingComponent } from '../loading/loading.component';
+import { forkJoin, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-history-mecha',
@@ -26,31 +28,42 @@ export class HistoryMechaComponent implements OnInit {
     isLoading = true;
 
     ngOnInit(): void {
-      if (!this.mechanicId){
-        setTimeout(() => this.initialize(), 5000);
-        this.isLoading = false
-      }else {
-        this.initialize()
-      }
+      this.initialize()
     }
   
-    getAppoMecha():void{
-      this.appointmentService.getAppointments().subscribe(data =>{
-        this.appointments = data;
-        this.appointments = this.appointments.filter(appointment => appointment.mechanicId.toString() == this.mechanicId)
-        
-        console.log(this.appointments);
-        for(let appointment of this.appointments){
-          this.userService.getById(appointment.customerId).subscribe(customer =>{
-            appointment.customerName = customer.firstName + ' ' + customer.lastName
+    getAppoMecha(){
+      return this.appointmentService.getAppointments().pipe(
+        // Step 1: Filter appointments first
+        map((data: any[]) => {
+          return data.filter(app => 
+            app.mechanicId.toString() === this.mechanicId
+          );
+        }),
+        // Step 2: Process filtered appointments
+        switchMap(filteredApps => {
+          if (filteredApps.length === 0) {
+            return of([]); // Early return if no appointments
+          }
+    
+          // Step 3: Create parallel requests for each appointment
+          const detailRequests = filteredApps.map(appointment => {
+            return forkJoin([
+              this.userService.getById(appointment.customerId),
+              this.serviceService.getById(appointment.serviceId)
+            ]).pipe(
+              // Step 4: Transform the combined results
+              map(([customer, service]) => ({
+                ...appointment,
+                customerName: `${customer.firstName} ${customer.lastName}`,
+                serviceName: service.serviceName
+              }))
+            );
           });
-          
-          this.serviceService.getById(appointment.serviceId).subscribe(service =>{
-            appointment.serviceName = service.serviceName 
-  
-          })
-        }
-      })
+    
+          // Step 5: Execute all requests in parallel
+          return forkJoin(detailRequests);
+        })
+      );
     }
   
     initialize(): void{
