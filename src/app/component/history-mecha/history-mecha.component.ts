@@ -35,7 +35,7 @@ export class HistoryMechaComponent implements OnInit {
       }
     }
   
-    getAppoMecha(){
+    /* getAppoMecha(){
       console.time('Start')
       this.appointmentService.getAppointments().subscribe(data =>{
         const currentDate = new Date();
@@ -55,7 +55,7 @@ export class HistoryMechaComponent implements OnInit {
         }
       })
       console.timeEnd('End')
-    }
+    } */
   
     initialize(): void{
       const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
