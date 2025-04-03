@@ -28,11 +28,15 @@ export class HistoryMechaComponent implements OnInit {
     isLoading = true;
 
     ngOnInit(): void {
-      this.isLoading = true;
-      this.initialize()
+      if (!this.mechanicId){
+        setTimeout(() => this.initialize(), 7000);
+      }else {
+        this.initialize()
+      }
     }
   
     getAppoMecha(){
+      console.time('Start')
       this.appointmentService.getAppointments().subscribe(data =>{
         const currentDate = new Date();
         this.appointments = data;
@@ -50,6 +54,7 @@ export class HistoryMechaComponent implements OnInit {
           })
         }
       })
+      console.time('End')
     }
   
     initialize(): void{
