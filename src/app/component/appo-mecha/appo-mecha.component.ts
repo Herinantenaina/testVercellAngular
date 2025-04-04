@@ -31,15 +31,9 @@ export class AppoMechaComponent implements OnInit {
   mechanicId: string = '';
   user : any;
   customerId: any;
-  isLoading = true
+
   ngOnInit(): void {
-    if (!this.mechanicId){
-      setTimeout(() => this.initialize(), 6000);
-      this.isLoading = false
-    }else {
-      this.initialize()
-      console.log('no mecha id')
-    }
+    this.initialize();
   }
 
   getAppoMecha():void{
@@ -68,6 +62,7 @@ export class AppoMechaComponent implements OnInit {
       this.authService.getUserData(token).subscribe({
         next: (response: any) => {
           this.mechanicId= response._id;
+          this.getAppoMecha()
         },
         error: (error: any) => {
           console.error('Error fetching user data', error);
@@ -77,9 +72,6 @@ export class AppoMechaComponent implements OnInit {
     else {
       console.warn('no token found in localstorage');
     }
-    
-    this.getAppoMecha()
-
   }
 
 
