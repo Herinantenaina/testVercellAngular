@@ -29,9 +29,7 @@ export class HistoryMechaComponent implements OnInit {
     service: any
 
     ngOnInit(): void {
-      if (!this.mechanicId){
-        setTimeout(() => this.initialize(), 3000);
-      }
+      this.initialize();
     }
   
     getAppoMecha(){
