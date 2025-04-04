@@ -4,13 +4,10 @@ import { AuthService } from '../../services/auth-services/auth.service';
 import { AppointmentService } from '../../services/customer-services/customer-appointment-services/appointment.service';
 import { MechanicService } from '../../services/add-mechanic/mechanic.service';
 import { ServicesService } from '../../services/create-services/services.service';
-import { LoadingComponent } from '../loading/loading.component';
-import { forkJoin, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-history-mecha',
-  imports: [CommonModule, LoadingComponent],
+  imports: [CommonModule],
   templateUrl: './history-mecha.component.html',
   styleUrl: './history-mecha.component.scss'
 })
@@ -25,7 +22,6 @@ export class HistoryMechaComponent implements OnInit {
     appointments: any[] = [];
     mechanicId: string = '';
     user : any;
-    isLoading = true;
     service: any
 
     ngOnInit(): void {
@@ -51,9 +47,6 @@ export class HistoryMechaComponent implements OnInit {
         }
         console.timeEnd('time');
       })
-
-    
-     
     }
   
     initialize(): void{
@@ -62,19 +55,16 @@ export class HistoryMechaComponent implements OnInit {
         this.authService.getUserData(token).subscribe({
           next: (response: any) => {
             this.mechanicId= response._id;
+            this.getAppoMecha()
           },
           error: (error: any) => {
             console.error('Error fetching user data', error);
-            this.isLoading = false;
           }
         })
       }
       else {
-        this.isLoading = false
-        console.warn('no token found in localstorage');
+              console.warn('no token found in localstorage');
       }
-      this.getAppoMecha()
-      this.isLoading = false
     }
   
   
