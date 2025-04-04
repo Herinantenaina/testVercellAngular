@@ -29,11 +29,11 @@ export class HistoryMechaComponent implements OnInit {
     service: any
 
     ngOnInit(): void {
+      console.time('time');
       if (!this.mechanicId){
         setTimeout(() => this.initialize(), 3000);
-      }else {
-        this.initialize()
       }
+      console.timeEnd('time');
     }
   
     getAppoMecha(){
@@ -75,9 +75,7 @@ export class HistoryMechaComponent implements OnInit {
         this.isLoading = false
         console.warn('no token found in localstorage');
       }
-      console.time('time');
       this.getAppoMecha()
-      console.timeEnd('time');
       this.isLoading = false
     }
   
