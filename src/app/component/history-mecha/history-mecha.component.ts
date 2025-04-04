@@ -6,7 +6,7 @@ import { MechanicService } from '../../services/add-mechanic/mechanic.service';
 import { ServicesService } from '../../services/create-services/services.service';
 import { LoadingComponent } from '../loading/loading.component';
 import { forkJoin, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-history-mecha',
@@ -26,6 +26,7 @@ export class HistoryMechaComponent implements OnInit {
     mechanicId: string = '';
     user : any;
     isLoading = true;
+    service: any
 
     ngOnInit(): void {
       if (!this.mechanicId){
@@ -36,9 +37,8 @@ export class HistoryMechaComponent implements OnInit {
     }
   
     getAppoMecha(){
-      console.time('Start')
+      const currentDate = new Date();
       this.appointmentService.getAppointments().subscribe(data =>{
-        const currentDate = new Date();
         this.appointments = data;
         this.appointments = this.appointments.filter(appointment => appointment.mechanicId.toString() == this.mechanicId)
         this.appointments = this.appointments.filter(appointment => new Date(appointment.appoDate) < currentDate)
@@ -47,17 +47,19 @@ export class HistoryMechaComponent implements OnInit {
           this.userService.getById(appointment.customerId).subscribe(customer =>{
             appointment.customerName = customer.firstName + ' ' + customer.lastName
           });
-          
-          /* this.serviceService.getById(appointment.serviceId).subscribe(service =>{
+          this.serviceService.getById(appointment.serviceId).subscribe(service =>{
             appointment.serviceName = service.serviceName 
   
-          }) */
+          }) 
         }
       })
-      console.timeEnd('End')
+
+    
+     
     }
   
     initialize(): void{
+      console.time('start: ');
       const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
       if (token) {
         this.authService.getUserData(token).subscribe({
@@ -74,7 +76,7 @@ export class HistoryMechaComponent implements OnInit {
         this.isLoading = false
         console.warn('no token found in localstorage');
       }
-      
+      console.timeEnd('End: ')
       this.getAppoMecha()
       this.isLoading = false
     }

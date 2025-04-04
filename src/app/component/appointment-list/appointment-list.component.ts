@@ -120,33 +120,8 @@ export class AppointmentListComponent implements OnInit{
   
     return `${formattedDate}, ${formattedTime}`;
   }
-
-  checkSameAppoDate(appointments: any[], mechanics: any[]) {
-    for (let i = 0; i < appointments.length; i++) {
-      for (let j = i + 1; j < appointments.length; j++) {
-        const date1 = new Date(appointments[i].appoDate);
-        const date2 = new Date(appointments[j].appoDate);
-        const isSameTime = 
-          date1.getMonth() == date2.getMonth() &&
-          date1.getDate()  == date2.getDate() &&
-          date1.getHours() == date2.getHours() &&
-          date1.getMinutes() == date2.getMinutes()
-
-        if (isSameTime) {
-          console.log('Duplicate found between appointments', i, 'and', j);
-
-          return true; // Exit early if you just need to know duplicates exist
-        }
-        
-      }
-    }
-    console.log('No duplicates found');
-    let test = new Date(appointments[1].appoDate)
-    console.log(test)
-    
-    return false;
-  }
-
+  
+      
   checkMechanicAvailability(mechanic: any[]){
     for(let i = 0; i < mechanic.length; i++){
       
