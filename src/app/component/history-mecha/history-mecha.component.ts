@@ -65,6 +65,7 @@ export class HistoryMechaComponent implements OnInit {
         this.authService.getUserData(token).subscribe({
           next: (response: any) => {
             this.mechanicId= response._id;
+            console.timeEnd('End: ');
           },
           error: (error: any) => {
             console.error('Error fetching user data', error);
@@ -76,7 +77,7 @@ export class HistoryMechaComponent implements OnInit {
         this.isLoading = false
         console.warn('no token found in localstorage');
       }
-      console.timeEnd('End: ')
+      
       this.getAppoMecha()
       this.isLoading = false
     }
